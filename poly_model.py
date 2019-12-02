@@ -9,7 +9,7 @@ from sklearn.preprocessing import PolynomialFeatures
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
 import matplotlib.pyplot as plt
 import pre_processing as pp
-
+import pickle
 # Loading data
 data = pd.read_csv('Predicting_Mobile_App_Success.csv')
 data.drop([6941, 12624, 18477], inplace=True)
@@ -55,4 +55,8 @@ true_player_value = np.asarray(y_test)[0]
 predicted_player_value = prediction[0]
 print('True rate for the first application  in the test set  is : ' + str(true_player_value))
 print('Predicted rate for the  first application  in the test set  is : ' + str(predicted_player_value))
+
+filename = 'poly_model.sav'
+pickle.dump(poly_model, open(filename, 'wb'))
+
 
