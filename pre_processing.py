@@ -16,26 +16,15 @@ def isfloat(val):
         return False
 
 def delete_noise_data(data,cols):
-
+    noisyRows=set()
     for i in cols:
-        z = 0
-        print(".........",len(data))
         for x in data[i]:
-
-            if isfloat(x):
-                data[i].values[z]=float(x)
-            else:
-                print(x,":",z,np.where(data[i]==x)[0])
-                print(data[i].values[z])
-                data.drop([z],inplace=True)
-                print(x, ":", z, np.where(data[i] == x)[0])
-                print(data[i].values[z-1])
-                z=z-1
-            z = z + 1
-
-        print("..........>",len(data))
-
-
+            if not isfloat(x):
+                data.drop(data[data[i]==x].index[0],inplace=True)
+    return data
+def to_float(data,cols):
+    for i in cols:
+        data[i]=data[i].astype(float)
     return data
 
 

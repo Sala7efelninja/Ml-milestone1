@@ -8,7 +8,7 @@ import seaborn as sns
 import pre_processing as pp
 
 # Loading data
-data = pd.read_csv('D:\sana 4\ML\Project\Predicting_Mobile_App_Success.csv')
+data = pd.read_csv('Predicting_Mobile_App_Success.csv')
 #data.drop([6941, 12624, 18477], inplace=True)
 data = data[~data['Size'].isin(['Varies with device'])]
 data.dropna(axis=0,how='any',inplace=True)
@@ -16,11 +16,12 @@ data=pp.remove_symbols(data)
 
 columns_to_be_validated=['Rating','Price','Size','Reviews','Installs']
 data=pp.delete_noise_data(data,columns_to_be_validated)
-print(len(data))
+data=pp.to_float(data,columns_to_be_validated)
+
 #X = data .loc[:, data.columns != 'Rating']
 
 X = data.iloc[:,[1,3,4,5,6,7,9]]
-print(len(X))
+
 Y = data['Rating']
 
 # pre-processing
@@ -30,7 +31,7 @@ columns_to_be_scaled = ['Installs', 'Reviews']
 #X=pp.label_encoder_trans(X,columns_to_be_transfomered)
 
 
-dummy=pp.one_hot_trans(data,['Latest Version'])
+#dummy=pp.one_hot_trans(data,['Latest Version'])
 
 
 encodedFeatures =pp.one_hot_trans(X,columns_to_be_transfomered)

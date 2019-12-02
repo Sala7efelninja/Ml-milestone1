@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 import pre_processing as pp
 
 # Loading data
-data = pd.read_csv('D:\sana 4\ML\Project\Predicting_Mobile_App_Success.csv')
+data = pd.read_csv('Predicting_Mobile_App_Success.csv')
 data.drop([6941, 12624, 18477], inplace=True)
 data = data[~data['Size'].isin(['Varies with device'])]
 #X = data.loc[:, data.columns != 'Rating']
