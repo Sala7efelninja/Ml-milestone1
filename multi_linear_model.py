@@ -24,7 +24,7 @@ data=pp.to_float(data,columns_to_be_validated)
 X = data.iloc[:,[1,3,4,5,6,7,9]]
 
 Y = data['Rating']
-
+date=data['Last Updated']
 # pre-processing
 
 columns_to_be_transfomered = ['Category', 'Minimum Version', 'Content Rating']
